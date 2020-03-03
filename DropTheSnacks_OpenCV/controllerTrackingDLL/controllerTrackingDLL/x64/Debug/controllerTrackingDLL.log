@@ -1,0 +1,4 @@
+﻿  controllerTrackingDLL.cpp
+controllerTrackingDLL.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/INCREMENTAL:NO' 사양으로 인해 무시됩니다.
+     C:\Users\jin\Desktop\Univ\4-1\short-project\DropTheSnacks_OpenCV\controllerTrackingDLL\x64\Debug\controllerTrackingDLL.lib 라이브러리 및 C:\Users\jin\Desktop\Univ\4-1\short-project\DropTheSnacks_OpenCV\controllerTrackingDLL\x64\Debug\controllerTrackingDLL.exp 개체를 생성하고 있습니다.
+  controllerTrackingDLL.vcxproj -> C:\Users\jin\Desktop\Univ\4-1\short-project\DropTheSnacks_OpenCV\controllerTrackingDLL\x64\Debug\controllerTrackingDLL.dll

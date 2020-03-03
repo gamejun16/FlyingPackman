@@ -1,0 +1,21 @@
+# 20200303 시작
+
+# 참고 사이트
+HSV 설명
+https://m.blog.naver.com/PostView.nhn?blogId=samsjang&logNo=220504633218&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+색 검출 도움
+https://webnautes.tistory.com/942
+
+
+
+# 1. 오전 1:47 2020-03-04
+빨간색 컨트롤러 인식해서 좌표값(left) 가져옴
+가져온 좌표값 바탕으로 유니티 내에서 게임 캐릭터 움직여짐
+잠와
+
+프로젝트이름 맘에안들어
+목표 색 바꿀 수 있게
+색 인식 정확도 한계는 어떻게?
+프레임 개선 필요?
+게임성 어떻게 추가?
+
