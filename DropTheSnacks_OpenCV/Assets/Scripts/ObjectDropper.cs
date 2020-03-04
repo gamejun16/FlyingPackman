@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ObjectDropper: MonoBehaviour
 {
-    [SerializeField]
-    int speed;
+    public int speed;
 
     /*****
      * 
@@ -22,7 +21,7 @@ public class ObjectDropper: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 물리엔진으로 자유낙하?
+        // 아래로~ 아래로~
         transform.Translate(Vector3.down * Time.deltaTime * speed);
     }
 }

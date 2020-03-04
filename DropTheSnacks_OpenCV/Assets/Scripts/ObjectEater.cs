@@ -11,6 +11,9 @@ public class ObjectEater : MonoBehaviour
      * 
      * */
 
+    public UIStatusManager uiStatusManager;
+    public PlayerAnimController playerAnimController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +30,14 @@ public class ObjectEater : MonoBehaviour
     {
         if (collision.gameObject.layer == 8) // canEat
         {
-            Debug.Log("냠냠");
+            uiStatusManager.scoreManager();
+            uiStatusManager.gageManager();
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.layer == 9) // cannotEat
         {
-            Debug.Log("퉤");
+            uiStatusManager.hpManager();
+            playerAnimController.Anim_Hitted();
             Destroy(collision.gameObject);
         }
     }
