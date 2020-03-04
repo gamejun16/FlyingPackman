@@ -27,7 +27,7 @@ extern "C" {
 
 		if (!cap.isOpened()) { // 한 캠이라도 아직 켜져있다면 false 반환 및 종료
 
-			//cap.set(cv::CAP_PROP_SETTINGS, 0);
+			cap.set(cv::CAP_PROP_SETTINGS, 0);
 			//cap2.set(cv::CAP_PROP_SETTINGS, 0);
 
 			cap.open(0);
@@ -118,6 +118,8 @@ extern "C" {
 
 				// 색으로 인식된 물체들을 순회
 			int max = -1, idx = 0;
+
+			if (numOfLables == 0) return false;
 
 			for (int j = 1; j < numOfLables; j++) {
 				int area = stats.at<int>(j, CC_STAT_AREA);

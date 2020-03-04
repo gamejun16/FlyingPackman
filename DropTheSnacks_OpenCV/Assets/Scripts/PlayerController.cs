@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // -5 ~ 5 to 
-        float angle = (transform.position.x - ghost.transform.position.x) * 9f;
+        float angle = (transform.position.x - ghost.transform.position.x) * 15f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
         // 매 Update마다 현 위치와 Ghost 위치의 중앙으로 이동(수렴)

@@ -18,7 +18,7 @@ public class ControllerTracker : MonoBehaviour
     private static extern bool cv_Tracking(ref int _center);
 
     // 영상 인식 및 처리 과정을 별도의 스레드로 분리
-    Thread thread = null;
+    Thread thread;
 
     // 개발 환경 랩탑의 경우 640*480 웹캠이기에 0~640까지 인식
     public int center;
@@ -116,12 +116,13 @@ public class ControllerTracker : MonoBehaviour
 
     void ThreadTracking()
     {
+
         while (threadIsOn)
         {
             bool tmp = cv_Tracking(ref center);
-
             if (!tmp)
             {
+                
                 Debug.Log("Top Cam Error");
                 TrackingOff();
 
@@ -131,6 +132,7 @@ public class ControllerTracker : MonoBehaviour
             {
                 //
             }
+
 
         }
         Debug.Log("(3) thread Top loop is done");
