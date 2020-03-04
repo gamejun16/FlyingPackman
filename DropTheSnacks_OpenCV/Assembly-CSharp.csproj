@@ -60,8 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\ControllerTracker.cs" />
+    <Compile Include="Assets\Scripts\GhostController.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/jin/Desktop/Univ/4-1/short-project/DropTheSnacks_OpenCV/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

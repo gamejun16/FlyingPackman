@@ -55,7 +55,7 @@ extern "C" {
 
 
 
-	__declspec(dllexport) bool cv_Tracking(int* _left)
+	__declspec(dllexport) bool cv_Tracking(int* _center)
 	{
 
 		Scalar red(0, 0, 255);
@@ -70,7 +70,7 @@ extern "C" {
 
 		/**************************		[ 상단 캠 ] 공의 좌표(xPos, yPos) 검출		***************************/
 		Mat img_frame;
-		UMat u_img_frame, u_img_hsv, u_img_gray, u_img_cut;
+		UMat u_img_frame, u_img_hsv, u_img_cut;
 		try {
 			//// 프레임 읽어오기. 캠 화면을 img_frame에 저장
 			cap.read(img_frame);
@@ -91,21 +91,22 @@ extern "C" {
 			/********************** 색 기반 트래킹 전처리 **********************/
 
 			//	//지정한 HSV 범위를 이용하여 영상을 이진화
-			UMat img_mask1;
-			inRange(u_img_hsv, redLower, redUpper, img_mask1);
+			UMat u_img_mask1;
+			inRange(u_img_hsv, redLower, redUpper, u_img_mask1);
 
 			
 
 			// 정확도를 높이기 위한 구문. 성능에 영향을 준다.
 			//morphological opening 작은 점들을 제거
-			erode(img_mask1, img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
-			dilate(img_mask1, img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+			erode(u_img_mask1, u_img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+			dilate(u_img_mask1, u_img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
 			//morphological closing 영역의 구멍 메우기
-			//dilate(img_mask1, img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
-			//erode(img_mask1, img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+			//dilate(u_img_mask1, u_img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+			//erode(u_img_mask1, u_img_mask1, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
 
 			//라벨링
-			Mat img_labels, stats, centroids;
+			Mat img_mask1, img_labels, stats, centroids;
+			img_mask1 = u_img_mask1.getMat(AccessFlag::ACCESS_READ);
 			int numOfLables = connectedComponentsWithStats(img_mask1, img_labels, stats, centroids, 8, CV_32S);
 
 			/********** 색 기반 트래킹 전처리 종료 ***********/
@@ -134,13 +135,13 @@ extern "C" {
 			int width = stats.at <int>(idx, CC_STAT_WIDTH);
 			int height = stats.at<int>(idx, CC_STAT_HEIGHT);
 
-			*_left = left; // 값 전달
+			*_center = left + (width / 2); // 인식된 물체(컨트롤러)의 중심 좌표 전달
 
 			// 인식 범위 표시
 			rectangle(u_img_frame, Rect(Point(left, top), Point(left+width, top+height)), Scalar(0, 0, 255), 4);
 		
-			imshow("top(color)", img_mask1);
-			imshow("top(x, y)", u_img_frame);
+			imshow("trackedColorMask", img_mask1);
+			imshow("frontCam", u_img_frame);
 
 
 			waitKey(1);
@@ -149,7 +150,7 @@ extern "C" {
 		catch (Exception e) {
 			return false;
 		}
-		/************ 이상 상단 캠 ************/
+		/************ 이상 전면 캠 ************/
 
 		return true;
 	}
