@@ -142,8 +142,8 @@ extern "C" {
 			// 인식 범위 표시
 			rectangle(u_img_frame, Rect(Point(left, top), Point(left+width, top+height)), Scalar(0, 0, 255), 4);
 		
-			imshow("trackedColorMask", img_mask1);
-			imshow("frontCam", u_img_frame);
+			//imshow("trackedColorMask", img_mask1);
+			//imshow("frontCam", u_img_frame);
 
 
 			waitKey(1);

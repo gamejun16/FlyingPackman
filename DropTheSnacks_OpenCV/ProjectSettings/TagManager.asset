@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - laser
+  - bullet
   layers:
   - Default
   - TransparentFX

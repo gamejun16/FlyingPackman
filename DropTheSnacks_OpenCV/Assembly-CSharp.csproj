@@ -60,18 +60,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ControllerTracker.cs" />
-    <Compile Include="Assets\Scripts\CreatureAnimController.cs" />
-    <Compile Include="Assets\Scripts\GhostController.cs" />
-    <Compile Include="Assets\Scripts\LaserController.cs" />
-    <Compile Include="Assets\Scripts\ObjectDestroyer.cs" />
-    <Compile Include="Assets\Scripts\ObjectDropper.cs" />
-    <Compile Include="Assets\Scripts\ObjectEater.cs" />
-    <Compile Include="Assets\Scripts\ObjectGenerator.cs" />
-    <Compile Include="Assets\Scripts\PlayerAnimController.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PlayerStatusManager.cs" />
-    <Compile Include="Assets\Scripts\UIStatusManager.cs" />
+    <Compile Include="Assets\Scripts\Creature\CreatureAnimController.cs" />
+    <Compile Include="Assets\Scripts\Field\ObjectDestroyer.cs" />
+    <Compile Include="Assets\Scripts\Field\ObjectDropper.cs" />
+    <Compile Include="Assets\Scripts\Field\ObjectGenerator.cs" />
+    <Compile Include="Assets\Scripts\GameSystem\ControllerTracker.cs" />
+    <Compile Include="Assets\Scripts\GameSystem\GhostController.cs" />
+    <Compile Include="Assets\Scripts\Player\Gear\GearBulletController.cs" />
+    <Compile Include="Assets\Scripts\Player\Gear\GearController.cs" />
+    <Compile Include="Assets\Scripts\Player\Gear\GearPositionController.cs" />
+    <Compile Include="Assets\Scripts\Player\LaserController.cs" />
+    <Compile Include="Assets\Scripts\Player\ObjectEater.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStatusManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIStatusManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/jin/Desktop/Univ/4-1/short-project/DropTheSnacks_OpenCV/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
