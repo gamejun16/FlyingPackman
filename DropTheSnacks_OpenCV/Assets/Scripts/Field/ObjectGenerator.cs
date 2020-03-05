@@ -19,6 +19,9 @@ public class ObjectGenerator : MonoBehaviour
     // 오브젝트 목록
     public List<GameObject> Objects;
 
+    // 크리쳐 목록
+    public List<GameObject> Creatures;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +54,7 @@ public class ObjectGenerator : MonoBehaviour
                 timer = 0f;
 
                 int rand = Random.Range(0, GeneratePoints.Count);
-                Instantiate(Objects[1], GeneratePoints[rand].position, Quaternion.identity);
+                Instantiate(Creatures[0], GeneratePoints[rand].position, Quaternion.identity);
             }
 
             yield return null;
@@ -70,7 +73,12 @@ public class ObjectGenerator : MonoBehaviour
                 timer = 0f;
 
                 int rand = Random.Range(0, GeneratePoints.Count);
-                Instantiate(Objects[0], GeneratePoints[rand].position, Quaternion.identity);
+
+                int obj;
+                if (Random.Range(0, 10) > 0) obj = 0; // coin
+                else obj = 1; // heart
+
+                Instantiate(Objects[obj], GeneratePoints[rand].position, Quaternion.identity);
             }
 
             yield return null;

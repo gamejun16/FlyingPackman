@@ -103,8 +103,11 @@ public class ControllerTracker : MonoBehaviour
         if (thread != null)
         {
             thread.Interrupt();
+            thread.Join();
+
             thread = null;
         }
+
         
         Debug.Log("(5) thread off");
 

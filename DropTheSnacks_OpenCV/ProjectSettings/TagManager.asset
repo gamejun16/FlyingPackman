@@ -6,6 +6,8 @@ TagManager:
   tags:
   - laser
   - bullet
+  - coin
+  - heart
   layers:
   - Default
   - TransparentFX

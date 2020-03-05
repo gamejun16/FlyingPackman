@@ -855,6 +855,8 @@ MonoBehaviour:
   - {fileID: 95876120}
   Objects:
   - {fileID: 5233190824169071624, guid: 220d98b527fb5224698834673aa9164e, type: 3}
+  - {fileID: 5233190824169071624, guid: 16d299eac56654942b47cb3bcdab3d61, type: 3}
+  Creatures:
   - {fileID: 1407488361869012534, guid: ce5594e5fe104134abd073ac9ba4f86a, type: 3}
 --- !u!1 &704918339
 GameObject:
@@ -942,6 +944,7 @@ MonoBehaviour:
   playerController: {fileID: 760339915}
   playerStatusManager: {fileID: 760339918}
   gearPositionController: {fileID: 783397495}
+  uiStatusManager: {fileID: 0}
   animator: {fileID: 760339910}
 --- !u!50 &760339913
 Rigidbody2D:
@@ -1386,7 +1389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -280, y: -80}
+  m_AnchoredPosition: {x: -216, y: -80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1026029484
@@ -1567,7 +1570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -73.59985, y: -139.57507}
+  m_AnchoredPosition: {x: -9.5998535, y: -139.57507}
   m_SizeDelta: {x: 173.8, y: 79.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131700613

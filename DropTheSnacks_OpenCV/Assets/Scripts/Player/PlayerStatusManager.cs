@@ -69,26 +69,29 @@ public class PlayerStatusManager : MonoBehaviour
 
     public void hpManager(bool isIncrease = false)
     {
-        if (playerAnimController.animator.GetBool("isPowerUp") == true) return;
-
         if (isIncrease)
         {
-            HP++;
+            if (HP != __MAX_HP__)
+            {
+                HP++;
+            }
         }
         else
         {
+            if (playerAnimController.animator.GetBool("isPowerUp") == true) return;
+
             HP--;
         }
     }
 
     public void gageManager(bool isFull = false)
     {
-        if (playerAnimController.animator.GetBool("isPowerUp") == true) return;
+        if (playerAnimController.animator.GetBool("isPowerUp") == true)
+            return;
 
         if (isFull)
         {
             playerAnimController.Anim_PowerUP();
-            GAGE = 0;
         }
         else
         {
@@ -98,5 +101,10 @@ public class PlayerStatusManager : MonoBehaviour
                 gageManager(true);
             }
         }
+    }
+
+    public void initGage()
+    {
+        GAGE = 0;
     }
 }

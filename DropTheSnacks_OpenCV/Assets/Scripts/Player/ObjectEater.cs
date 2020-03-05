@@ -28,10 +28,17 @@ public class ObjectEater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 플레이어가 PowerUP 중일때는 게이지와 HP는 변동 없음
         if (collision.gameObject.layer == 8) // canEat
         {
-            uiStatusManager.gageManager();
+            if (collision.CompareTag("coin"))
+            {
+                uiStatusManager.gageManager();
+            }
+            else if (collision.CompareTag("heart"))
+            {
+                uiStatusManager.hpManager(true);
+            }
+
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.layer == 9) // cannotEat

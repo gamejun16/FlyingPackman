@@ -48,10 +48,16 @@ public class UIStatusManager : MonoBehaviour
     }
 
     // gage의 증감을 관리
-    public void gageManager()
+    public void gageManager(bool isInit = false)
     {
-
-        playerStatusManager.gageManager();
+        if (isInit)
+        {
+            playerStatusManager.initGage();
+        }
+        else
+        {
+            playerStatusManager.gageManager();
+        }
         int gage = playerStatusManager.getGAGE();
         gage_i.fillAmount = (float)gage / PlayerStatusManager.__MAX_GAGE__;
         gage_t.text = "GAGE : " + gage;
@@ -62,7 +68,7 @@ public class UIStatusManager : MonoBehaviour
     {
         playerStatusManager.initStatus();
 
-        score_t.text = "Score : " + playerStatusManager.getScore();
+        score_t.text = "" + playerStatusManager.getScore();
         hp_t.text = "HP : " + playerStatusManager.getHP();
         gage_t.text = "GAGE : " + playerStatusManager.getGAGE();
     }
