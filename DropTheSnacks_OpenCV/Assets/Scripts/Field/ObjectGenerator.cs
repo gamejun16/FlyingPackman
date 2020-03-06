@@ -11,17 +11,22 @@ public class ObjectGenerator : MonoBehaviour
      * */
 
     float __creatureGenerateTerm__ = 0.5f;
-    float __coinGenerateTerm__ = 1.0f;
+    float __itemGenerateTerm__ = 1.0f;
+    float __dangerGenerateTerm__ = 5.0f;
 
     // 생성 지점
     public List<Transform> GeneratePoints;
 
     // 오브젝트 목록
-    public List<GameObject> Objects;
+    public List<GameObject> Items;
 
     // 크리쳐 목록
     public List<GameObject> Creatures;
 
+    // 위험 물체(Danger)
+    // Dangers[0] : 위험물체
+    // Dangers[1] : 낙하 지점을 표시하는 화살표
+    public List<GameObject> Dangers;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +44,32 @@ public class ObjectGenerator : MonoBehaviour
     void stageManager(bool isPause = false)
     {
         StartCoroutine("creatureGenerator");
-        StartCoroutine("coinGenerator");
+        StartCoroutine("itemGenerator");
+        StartCoroutine("dangerGenerator");
+    }
+
+    IEnumerator itemGenerator()
+    {
+        float timer = 0f;
+        // 정해진 텀을 따라 계속 아이템을 생성
+        while (true)
+        {
+            timer += Time.deltaTime;
+            if (timer > __itemGenerateTerm__)
+            {
+                timer = 0f;
+
+                int rand = Random.Range(0, GeneratePoints.Count);
+
+                int idx;
+                if (Random.Range(0, 10) > 0) idx = 0; // coin
+                else idx = 1; // heart
+
+                Instantiate(Items[idx], GeneratePoints[rand].position, Quaternion.identity);
+            }
+
+            yield return null;
+        }
     }
 
     IEnumerator creatureGenerator()
@@ -54,36 +84,60 @@ public class ObjectGenerator : MonoBehaviour
                 timer = 0f;
 
                 int rand = Random.Range(0, GeneratePoints.Count);
-                Instantiate(Creatures[0], GeneratePoints[rand].position, Quaternion.identity);
+
+                int idx;
+                idx = Random.Range(0, Creatures.Count);
+
+                Instantiate(Creatures[idx], GeneratePoints[rand].position, Quaternion.identity);
             }
 
             yield return null;
         }
     }
-
-    IEnumerator coinGenerator()
+    
+    IEnumerator dangerGenerator()
     {
         float timer = 0f;
-        // 정해진 텀을 따라 계속 코인을 생성
         while (true)
         {
             timer += Time.deltaTime;
-            if (timer > __coinGenerateTerm__)
+
+            // 위험 물체 발사 준비
+            if (timer > __dangerGenerateTerm__)
             {
                 timer = 0f;
 
                 int rand = Random.Range(0, GeneratePoints.Count);
 
-                int obj;
-                if (Random.Range(0, 10) > 0) obj = 0; // coin
-                else obj = 1; // heart
+                // 낙하 위치 표시
+                Vector3 pointInstantiatsPos = GeneratePoints[rand].position;
+                pointInstantiatsPos.y -= 10;
 
-                Instantiate(Objects[obj], GeneratePoints[rand].position, Quaternion.identity);
+                GameObject point = Instantiate(Dangers[1], pointInstantiatsPos, Quaternion.identity);
+
+                // 낙하 위치 경고 1초 후 위험체 발사
+                while (timer < 1f)
+                {
+                    timer += Time.deltaTime;
+
+                    point.transform.Translate((GeneratePoints[rand].position - point.transform.position) / 5);
+
+
+                    yield return null;
+                }
+                // 화살표 삭제
+                Destroy(point);
+
+                // 위험체 발사
+                Instantiate(Dangers[0], GeneratePoints[rand].position, Quaternion.identity);
             }
 
             yield return null;
         }
     }
+
+
+    // 플레이어가 발사한 총알이 화면 상단으로 벗어났을 때 삭제하기위한 구문
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("bullet"))

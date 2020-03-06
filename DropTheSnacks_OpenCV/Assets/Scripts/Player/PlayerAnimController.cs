@@ -68,6 +68,9 @@ public class PlayerAnimController : MonoBehaviour
         playerController.LaserSetActive(false);
         animator.SetBool("isPowerUp", false);
 
+        // 불필요한 피격 애니메이션 출력을 방지
+        animator.SetBool("isHitted", false);
+
         // Gage 초기화
         uiStatusManager.gageManager(true);
 

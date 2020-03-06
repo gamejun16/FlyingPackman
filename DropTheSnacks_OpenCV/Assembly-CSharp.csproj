@@ -60,12 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Creature\CreatureAnimController.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossController.cs" />
+    <Compile Include="Assets\Scripts\Boss\BossPatternManager.cs" />
+    <Compile Include="Assets\Scripts\Boss\Henchman\HenchmanController.cs" />
+    <Compile Include="Assets\Scripts\Creature\CreatureController.cs" />
+    <Compile Include="Assets\Scripts\Effect\BarrierController.cs" />
     <Compile Include="Assets\Scripts\Field\ObjectDestroyer.cs" />
-    <Compile Include="Assets\Scripts\Field\ObjectDropper.cs" />
     <Compile Include="Assets\Scripts\Field\ObjectGenerator.cs" />
     <Compile Include="Assets\Scripts\GameSystem\ControllerTracker.cs" />
     <Compile Include="Assets\Scripts\GameSystem\GhostController.cs" />
+    <Compile Include="Assets\Scripts\ObjectDropper.cs" />
     <Compile Include="Assets\Scripts\Player\Gear\GearBulletController.cs" />
     <Compile Include="Assets\Scripts\Player\Gear\GearController.cs" />
     <Compile Include="Assets\Scripts\Player\Gear\GearPositionController.cs" />
