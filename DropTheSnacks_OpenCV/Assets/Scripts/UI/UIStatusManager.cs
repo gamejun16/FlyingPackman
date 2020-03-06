@@ -7,21 +7,38 @@ public class UIStatusManager : MonoBehaviour
 {
     /*****
      * 
-     * 화면에 표시되는 정보들을 관리하는 스크립트
+     * 화면에 표시될 수 있는 모든 정보들을 관리하는 스크립트
      * 
-     * 점수 HP 등을 출력한다.
+     * 포함하는 정보:
+     *  점수 HP 스코어(킬) 스테이지잔여시간
      * 
      * */
 
-    public Text score_t, hp_t, gage_t;
-    public PlayerStatusManager playerStatusManager;
+    int __stageTimer__ = 60; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
+    
+    // 본 스테이지의 남은 초(sec)
+    int leftStageTime;
 
-    public Image hp_i, gage_i;
+    // 현재 스테이지
+    int curStage;
+    
+    public Text score_t, hp_t, gage_t, time_t;
+    public PlayerStatusManager playerStatusManager;
+    ObjectGenerator objectGenerator;
+    
+    public Image hp_i, gage_i, bossHp_i, bossHp_i_bg;
+
+    private void Awake()
+    {
+        objectGenerator = GameObject.Find("GameManager").GetComponentInChildren<ObjectGenerator>();
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        initUIStatus();
+        nextStage(true);
+        StartCoroutine("stageTimer");
     }
 
     // Update is called once per frame
@@ -63,13 +80,49 @@ public class UIStatusManager : MonoBehaviour
         gage_t.text = "GAGE : " + gage;
     }
 
-    // Status를 초기화
-    void initUIStatus()
+    // 각 스테이지의 잔여 시간 체크 및 다음 스테이지로의 진행
+    IEnumerator stageTimer()
     {
-        playerStatusManager.initStatus();
+        float timer = 0f;
 
+        while (leftStageTime > 0)
+        {
+
+            timer += Time.deltaTime;
+
+            leftStageTime = __stageTimer__ - (int)timer;
+
+            time_t.text = ""+leftStageTime;
+
+            yield return null;
+        }
+
+        // 보스 스테이지 시작
+        objectGenerator.bossStageStarter(curStage);
+    }
+
+
+    // Status들을 초기화
+    void initUIStatus(bool isNextStage = false)
+    {
+        playerStatusManager.initStatus(isNextStage);
+
+        leftStageTime = __stageTimer__;
         score_t.text = "" + playerStatusManager.getScore();
         hp_t.text = "HP : " + playerStatusManager.getHP();
         gage_t.text = "GAGE : " + playerStatusManager.getGAGE();
     }
+  
+    // 다음 스테이지로 진행할 수 있는 스크립트
+    public void nextStage(bool isInit = false)
+    {
+        if (isInit) curStage = 1;
+        else curStage++;
+
+        // 스테이지가 초기화(다시시작)되는 경우와
+        // 다음 스테이지로 진행되는 경우를 구분한다
+        initUIStatus(!isInit);
+    }
+
+
 }

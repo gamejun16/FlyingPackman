@@ -34,9 +34,11 @@ public class PlayerStatusManager : MonoBehaviour
     }
 
     // Status들을 초기화하는 함수
-    public void initStatus()
+    public void initStatus(bool isNextStage = false)
     {
-        SCORE = 0;
+        // 다음 스테이지로 진행하는 경우 점수를 초기화하지 않는다
+        if (!isNextStage)
+            SCORE = 0;
         HP = __MAX_HP__;
         GAGE = 0;
     }

@@ -57,6 +57,7 @@ public class ControllerTracker : MonoBehaviour
         //thread.Abort(); // 스레드 종료. 원활한 종료가 이루어지지 않을 수 있음?
         Debug.Log("[QUIT IS CALL]");
 
+        
         TrackingOff();
     }
 
@@ -106,10 +107,14 @@ public class ControllerTracker : MonoBehaviour
             thread.Join();
 
             thread = null;
+            Debug.Log("(5) thread off");
         }
-
         
-        Debug.Log("(5) thread off");
+        else
+        {
+            Debug.Log("(5) thread off failed");
+        }
+        
 
         // 스레드 종료 완료?
 
@@ -138,7 +143,7 @@ public class ControllerTracker : MonoBehaviour
 
 
         }
-        Debug.Log("(3) thread Top loop is done");
+        Debug.Log("(3) thread Tracking loop is done");
         return;
     }
 

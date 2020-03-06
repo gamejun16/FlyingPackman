@@ -15,22 +15,20 @@ public class BarrierController : MonoBehaviour
      * 
      * */
 
-    bool isOn;
+    bool isBarrierOn;
 
     //SpriteRenderer spriteRenderer;
     Animator animator;
 
     private void Awake()
     {
-        //spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // 렌더링 끄기
-        //spriteRenderer.enabled = false;
+        StartCoroutine("hittedOff");
     }
 
     // Update is called once per frame
@@ -39,32 +37,56 @@ public class BarrierController : MonoBehaviour
         
     }
 
+    // 배리어가 꺼지지 않는 버그를 해결하기위한 임시 대책
+    IEnumerator hittedOff()
+    {
+        float timer = 0f;
+        while (true)
+        {
+            timer += Time.deltaTime;
+
+            if (timer > 0.3f)
+            {
+                timer = 0f;
+                animator.SetBool("isHitted", false);
+            }
+            yield return null;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isOn)
+        if (isBarrierOn)
         {
             if (collision.CompareTag("bullet"))
             {
                 Anim_Hitted();
-                
+
                 // 총알 삭제
                 Destroy(collision.gameObject);
             }
+            else if (collision.CompareTag("laser"))
+            {
+                Anim_Hitted();
+            }
+
         }
     }
+    
 
-    public void setIsOn(bool onOff)
+    public void setIsBarrierOn(bool onOff)
     {
-        isOn = onOff;
+        isBarrierOn = onOff;
     }
     public bool getIsOn()
     {
-        return isOn;
+        return isBarrierOn;
     }
 
     // 피격시
     void Anim_Hitted()
     {
+        // 피격시
         animator.SetBool("isHitted", true);
 
         // 사운드 출력
