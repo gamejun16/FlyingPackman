@@ -10,7 +10,7 @@ public class BossController : MonoBehaviour
      * 
      * */
 
-    UIStatusManager uiStatusManager;
+    //UIStatusManager uiStatusManager;
     BarrierController barrierController;
     BossStatusManager bossStatusManager;
 
@@ -19,7 +19,7 @@ public class BossController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
         barrierController = GetComponentInChildren<BarrierController>();
         bossStatusManager = GetComponent<BossStatusManager>();
     }
@@ -58,7 +58,7 @@ public class BossController : MonoBehaviour
     void playerGetKillPoint()
     {
         // 플레이어 점수 획득
-        uiStatusManager.scoreManager();
+        UIStatusManager.uiStatusManager.scoreManager();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -84,10 +84,8 @@ public class BossController : MonoBehaviour
                 // 피격
                 bossStatusManager.hpDecrease();
 
-                Debug.Log("으악");
-
                 // 총알 삭제
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
 
                 // 이후 Anim_Bomb_Done() 호출 및 자동 Destroy()
             }

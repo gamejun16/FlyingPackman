@@ -8,6 +8,9 @@ TagManager:
   - bullet
   - coin
   - heart
+  - GenerateArea
+  - DestroyArea
+  - player
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - catEat
   - cannotEat
-  - 
+  - player
   - 
   - 
   - 

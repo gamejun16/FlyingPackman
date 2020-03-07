@@ -11,7 +11,7 @@ public class ObjectEater : MonoBehaviour
      * 
      * */
 
-    public UIStatusManager uiStatusManager;
+    //public UIStatusManager uiStatusManager;
     public PlayerAnimController playerAnimController;
 
     // Start is called before the first frame update
@@ -28,24 +28,26 @@ public class ObjectEater : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8) // canEat
-        {
-            if (collision.CompareTag("coin"))
-            {
-                uiStatusManager.gageManager();
-            }
-            else if (collision.CompareTag("heart"))
-            {
-                uiStatusManager.hpManager(true);
-            }
+        //if (collision.gameObject.layer == 8) // canEat
+        //{
+        //    if (collision.CompareTag("coin"))
+        //    {
+        //        UIStatusManager.uiStatusManager.gageManager();
+        //    }
+        //    else if (collision.CompareTag("heart"))
+        //    {
+        //        UIStatusManager.uiStatusManager.hpManager(true);
+        //    }
 
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.layer == 9) // cannotEat
+        //    Destroy(collision.gameObject);
+        //}
+
+
+        if (collision.gameObject.layer == 9) // cannotEat
         {
-            uiStatusManager.hpManager();
+            //UIStatusManager.uiStatusManager.hpManager();
             playerAnimController.Anim_Hitted();
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
     

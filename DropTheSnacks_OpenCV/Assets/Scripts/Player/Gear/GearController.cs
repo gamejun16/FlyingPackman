@@ -15,7 +15,7 @@ public class GearController : MonoBehaviour
     public List<GameObject> bullet;
     public float shootTerm; // 연사 텀
 
-    int upgrade; // )~2 단계로 강화된다
+    public int upgrade; // 0~2 단계 강화 수준
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +38,10 @@ public class GearController : MonoBehaviour
             if(timer > shootTerm)
             {
                 timer = 0f;
-                
-                Instantiate(bullet[upgrade], transform.position, Quaternion.identity);
+
+                //Instantiate(bullet[upgrade], transform.position, Quaternion.identity);
+                GameObject bullet = PoolingManager.poolingManager.getBullet(upgrade);
+                bullet.transform.position = transform.position;
             }
             
             yield return null;

@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 24094463}
   m_Layer: 0
   m_Name: DestroyField
-  m_TagString: Untagged
+  m_TagString: DestroyArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 70707004}
   m_Layer: 0
   m_Name: ObjectEater
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4956fbc164c7593429aeb892eaa16cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiStatusManager: {fileID: 1865139232}
   playerAnimController: {fileID: 760339911}
 --- !u!61 &70707005
 BoxCollider2D:
@@ -551,6 +550,7 @@ Transform:
   - {fileID: 1865139231}
   - {fileID: 1050069518}
   - {fileID: 1614835326}
+  - {fileID: 689642647}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 619518805}
   m_Layer: 0
   m_Name: GenerateManager
-  m_TagString: Untagged
+  m_TagString: GenerateArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -936,6 +936,58 @@ MonoBehaviour:
   Dangers:
   - {fileID: 8041183067772028131, guid: 406abe2ab841e36498ac5ea22478f71f, type: 3}
   - {fileID: 2295913167334456213, guid: afe71fd035136b34b90d0bfa399039fd, type: 3}
+--- !u!1 &689642646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689642647}
+  - component: {fileID: 689642648}
+  m_Layer: 0
+  m_Name: PoolingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &689642647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689642646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 307908002}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &689642648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689642646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5775d4b099922945b47c6b8c321271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet_pref:
+  - {fileID: 3501344691436337193, guid: 95cf7ea6cf339f44bbbb57f5d790cce9, type: 3}
+  - {fileID: 3501344691436337193, guid: f722ccf11116dcf4082b475b86c56c34, type: 3}
+  - {fileID: 3501344691436337193, guid: da1ce0ca37b47cd4db1b294d8011adea, type: 3}
+  item_pref:
+  - {fileID: 5233190824169071624, guid: 220d98b527fb5224698834673aa9164e, type: 3}
+  - {fileID: 5233190824169071624, guid: 16d299eac56654942b47cb3bcdab3d61, type: 3}
+  creature_pref:
+  - {fileID: 1407488361869012534, guid: ce5594e5fe104134abd073ac9ba4f86a, type: 3}
 --- !u!1 &704918339
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +1035,7 @@ GameObject:
   - component: {fileID: 760339910}
   m_Layer: 0
   m_Name: PLAYER(follower)
-  m_TagString: Untagged
+  m_TagString: player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1022,7 +1074,6 @@ MonoBehaviour:
   playerController: {fileID: 760339915}
   playerStatusManager: {fileID: 760339918}
   gearPositionController: {fileID: 783397495}
-  uiStatusManager: {fileID: 0}
   animator: {fileID: 760339910}
 --- !u!50 &760339913
 Rigidbody2D:

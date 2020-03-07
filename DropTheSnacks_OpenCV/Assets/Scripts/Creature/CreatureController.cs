@@ -15,14 +15,16 @@ public class CreatureController : MonoBehaviour
      * 
      * */
 
-    UIStatusManager uiStatusManager;
+    //UIStatusManager uiStatusManager;
 
     Animator animator;
+    ObjectDropper objectDropper;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        objectDropper = GetComponent<ObjectDropper>();
+        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
     }
 
     void Anim_Bomb()
@@ -32,41 +34,57 @@ public class CreatureController : MonoBehaviour
 
     void Anim_Bomb_Done()
     {
-
-        Destroy(gameObject);
+        PoolingManager.poolingManager.returnCreature(gameObject, 0);
+        //Destroy(gameObject);
     }
 
     // Creature가 터지는 애니메이션이 시작됨과 동시에 킬이 적립된다.
     void playerGetKillPoint()
     {
         // 플레이어 점수 획득
-        uiStatusManager.scoreManager();
+        UIStatusManager.uiStatusManager.scoreManager();
     }
-    
+
+    private void OnEnable()
+    {
+        objectDropper.enabled = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("laser")) // laser
         {
             // 낙하 정지
-            GetComponent<ObjectDropper>().speed = 0;
+            objectDropper.enabled = false;
 
             // 폭발 애니메이션
             Anim_Bomb();
 
-            // 이후 Anim_Bomb_Done() 호출 및 자동 Destroy()
+            // 이후 Anim_Bomb_Done() 호출 및 자동 poolReturn
         }
         else if (collision.CompareTag("bullet")) // laser
         {
             // 낙하 정지
-            GetComponent<ObjectDropper>().speed = 0;
+            objectDropper.enabled = false;
 
             // 폭발 애니메이션
             Anim_Bomb();
 
             // 총알 삭제
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
 
-            // 이후 Anim_Bomb_Done() 호출 및 자동 Destroy()
+            // 이후 Anim_Bomb_Done() 호출 및 자동 poolReturn
+        }
+
+
+        if (collision.CompareTag("player"))
+        {
+            UIStatusManager.uiStatusManager.hpManager();
+            PoolingManager.poolingManager.returnCreature(gameObject, 0);
+        }
+        else if (collision.CompareTag("DestroyArea"))
+        {
+            PoolingManager.poolingManager.returnCreature(gameObject, 0);
         }
     }
 }

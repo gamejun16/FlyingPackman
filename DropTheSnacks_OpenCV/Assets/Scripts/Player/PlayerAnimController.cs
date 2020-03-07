@@ -16,13 +16,13 @@ public class PlayerAnimController : MonoBehaviour
     public PlayerController playerController;
     public PlayerStatusManager playerStatusManager;
     public GearPositionController gearPositionController;
-    public UIStatusManager uiStatusManager;
+   // public UIStatusManager uiStatusManager;
 
     public Animator animator;
 
     private void Awake()
     {
-        uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
     }
 
     public void Anim_Hitted()
@@ -72,7 +72,7 @@ public class PlayerAnimController : MonoBehaviour
         animator.SetBool("isHitted", false);
 
         // Gage 초기화
-        uiStatusManager.gageManager(true);
+        UIStatusManager.uiStatusManager.gageManager(true);
 
         // 신규 기어 장착
         gearPositionController.newGear();

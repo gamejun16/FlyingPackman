@@ -63,7 +63,7 @@ public class BarrierController : MonoBehaviour
                 Anim_Hitted();
 
                 // 총알 삭제
-                Destroy(collision.gameObject);
+                //Destroy(collision.gameObject);
             }
             else if (collision.CompareTag("laser"))
             {

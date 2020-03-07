@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Creature\Boss\BossController.cs" />
     <Compile Include="Assets\Scripts\Creature\Boss\BossPatternManager.cs" />
     <Compile Include="Assets\Scripts\Creature\Boss\BossStatusManager.cs" />
+    <Compile Include="Assets\Scripts\Creature\Boss\Henchman\CruiseMissileController.cs" />
     <Compile Include="Assets\Scripts\Creature\Boss\Henchman\HenchmanController.cs" />
     <Compile Include="Assets\Scripts\Creature\CreatureController.cs" />
     <Compile Include="Assets\Scripts\Effect\BarrierController.cs" />
@@ -70,6 +71,8 @@
     <Compile Include="Assets\Scripts\Field\ObjectGenerator.cs" />
     <Compile Include="Assets\Scripts\GameSystem\ControllerTracker.cs" />
     <Compile Include="Assets\Scripts\GameSystem\GhostController.cs" />
+    <Compile Include="Assets\Scripts\GameSystem\PoolingManager.cs" />
+    <Compile Include="Assets\Scripts\ItemController.cs" />
     <Compile Include="Assets\Scripts\ObjectDropper.cs" />
     <Compile Include="Assets\Scripts\Player\Gear\GearBulletController.cs" />
     <Compile Include="Assets\Scripts\Player\Gear\GearController.cs" />

@@ -14,7 +14,10 @@ public class UIStatusManager : MonoBehaviour
      * 
      * */
 
-    int __stageTimer__ = 60; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
+    // singleton
+    public static UIStatusManager uiStatusManager;
+
+    int __stageTimer__ = 5; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
     
     // 본 스테이지의 남은 초(sec)
     int leftStageTime;
@@ -30,6 +33,8 @@ public class UIStatusManager : MonoBehaviour
 
     private void Awake()
     {
+        uiStatusManager = this;
+
         objectGenerator = GameObject.Find("GameManager").GetComponentInChildren<ObjectGenerator>();
 
     }

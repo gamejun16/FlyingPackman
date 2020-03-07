@@ -25,11 +25,7 @@ public class ObjectDestroyer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 8 || collision.gameObject.layer == 9)
-        {
-            // 화면 밖으로 벗어난 오브젝트 삭제
-            Destroy(collision.gameObject);
-        }
+        
     }
 
 }

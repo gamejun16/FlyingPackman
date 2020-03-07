@@ -12,7 +12,7 @@ public class HenchmanController : MonoBehaviour
      * 
      * */
 
-    UIStatusManager uiStatusManager;
+    //UIStatusManager uiStatusManager;
     BossPatternManager bossPatternManager;
 
     Animator animator;
@@ -22,7 +22,7 @@ public class HenchmanController : MonoBehaviour
 
     private void Awake()
     {
-        uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
         bossPatternManager = GetComponentInParent<BossPatternManager>();
 
         animator = GetComponent<Animator>();
@@ -55,7 +55,7 @@ public class HenchmanController : MonoBehaviour
     void playerGetKillPoint()
     {
         // 플레이어 점수 획득
-        uiStatusManager.scoreManager();
+        UIStatusManager.uiStatusManager.scoreManager();
     }
     
 
@@ -96,7 +96,7 @@ public class HenchmanController : MonoBehaviour
             Anim_Bomb();
 
             // 총알 삭제
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
 
             // 이후 Anim_Bomb_Done() 호출 및 자동 Destroy()
         }

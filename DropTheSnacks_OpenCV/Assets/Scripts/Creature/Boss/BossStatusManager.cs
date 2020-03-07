@@ -16,7 +16,7 @@ public class BossStatusManager : MonoBehaviour
 
     public int __MAX_HP__ = 40;
 
-    UIStatusManager uiStatusManager;
+    //UIStatusManager uiStatusManager;
     BossController bossController;
 
     int hp;
@@ -24,11 +24,11 @@ public class BossStatusManager : MonoBehaviour
 
     private void Awake()
     {
-        uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
         bossController = GetComponent<BossController>();
 
-        hp_i = uiStatusManager.bossHp_i;
-        hp_i_bg = uiStatusManager.bossHp_i_bg;
+        hp_i = UIStatusManager.uiStatusManager.bossHp_i;
+        hp_i_bg = UIStatusManager.uiStatusManager.bossHp_i_bg;
     }
 
     // Start is called before the first frame update

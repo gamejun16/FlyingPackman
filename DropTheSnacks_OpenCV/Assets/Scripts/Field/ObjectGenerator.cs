@@ -10,8 +10,6 @@ public class ObjectGenerator : MonoBehaviour
      * 
      * */
 
-    
-
     float __creatureGenerateTerm__ = 0.5f;
     float __itemGenerateTerm__ = 1.0f;
     float __dangerGenerateTerm__ = 5.0f;
@@ -75,7 +73,9 @@ public class ObjectGenerator : MonoBehaviour
                 if (Random.Range(0, 10) > 0) idx = 0; // coin
                 else idx = 1; // heart
 
-                Instantiate(Items[idx], GeneratePoints[rand].position, Quaternion.identity);
+                //Instantiate(Items[idx], GeneratePoints[rand].position, Quaternion.identity);
+                GameObject obj = PoolingManager.poolingManager.getItem(idx);
+                obj.transform.position = GeneratePoints[rand].position;
             }
 
             yield return null;
@@ -95,10 +95,9 @@ public class ObjectGenerator : MonoBehaviour
 
                 int rand = Random.Range(0, GeneratePoints.Count);
 
-                int idx;
-                idx = Random.Range(0, Creatures.Count);
-
-                Instantiate(Creatures[idx], GeneratePoints[rand].position, Quaternion.identity);
+                //Instantiate(Creatures[0], GeneratePoints[rand].position, Quaternion.identity);
+                GameObject obj = PoolingManager.poolingManager.getCreature(0);
+                obj.transform.position = GeneratePoints[rand].position;
             }
 
             yield return null;
@@ -151,15 +150,7 @@ public class ObjectGenerator : MonoBehaviour
     {
         coroutineLoopFlag = false;
     }
-
-    // 플레이어가 발사한 총알이 화면 상단으로 벗어났을 때 삭제하기위한 구문
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("bullet"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
+    
 
     // 해당 스테이지의 보스 전투를 시작
     public void bossStageStarter(int stage)
