@@ -10,12 +10,17 @@ public class ItemController : MonoBehaviour
      * 
      * */
 
+    //AudioSource audioSource;
 
     enum SERIAL { COIN, HEART, }
 
      // serialNumb으로 각 아이템 구분
     // 0: coin, 1:heart, ...
     public int serialNumb;
+
+    private void Awake()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +42,11 @@ public class ItemController : MonoBehaviour
         {
             case (int)SERIAL.COIN:
                 UIStatusManager.uiStatusManager.gageManager();
+                SoundManager.soundManager.playPlayerSound((int)SoundManager.player.COIN, UIStatusManager.uiStatusManager.itemAudioSource);
                 break;
             case (int)SERIAL.HEART:
                 UIStatusManager.uiStatusManager.hpManager(true);
+                SoundManager.soundManager.playPlayerSound((int)SoundManager.player.HEART, UIStatusManager.uiStatusManager.itemAudioSource);
                 break;
         }
 
@@ -54,6 +61,7 @@ public class ItemController : MonoBehaviour
         if (collision.CompareTag("player"))
         {
             itemEffect();
+            Debug.Log("아이템 획득");
         }
 
         // 삭제

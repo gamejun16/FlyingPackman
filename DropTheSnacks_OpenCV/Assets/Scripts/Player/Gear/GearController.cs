@@ -12,10 +12,17 @@ public class GearController : MonoBehaviour
      * 
      * */
 
+    AudioSource audioSource;
+
     public List<GameObject> bullet;
     public float shootTerm; // 연사 텀
 
     public int upgrade; // 0~2 단계 강화 수준
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +49,8 @@ public class GearController : MonoBehaviour
                 //Instantiate(bullet[upgrade], transform.position, Quaternion.identity);
                 GameObject bullet = PoolingManager.poolingManager.getBullet(upgrade);
                 bullet.transform.position = transform.position;
+
+                SoundManager.soundManager.playGearSound((int)SoundManager.gear.SHOT, audioSource);
             }
             
             yield return null;

@@ -10,16 +10,18 @@ public class BossController : MonoBehaviour
      * 
      * */
 
-    //UIStatusManager uiStatusManager;
+    
     BarrierController barrierController;
     BossStatusManager bossStatusManager;
 
     Animator animator;
+    AudioSource audioSource;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        audioSource = GetComponent<AudioSource>();
+
         barrierController = GetComponentInChildren<BarrierController>();
         bossStatusManager = GetComponent<BossStatusManager>();
     }
@@ -27,12 +29,15 @@ public class BossController : MonoBehaviour
     private void Start()
     {
         StartCoroutine("hittedOff");
+
     }
 
     void Anim_Hitted()
     {
         if (!animator.GetBool("isHitted"))
             animator.SetBool("isHitted", true);
+
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BOOM2, audioSource);
     }
 
     void Anim_Hitted_Done()

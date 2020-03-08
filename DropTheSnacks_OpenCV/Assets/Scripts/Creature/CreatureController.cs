@@ -8,34 +8,34 @@ public class CreatureController : MonoBehaviour
 {
     /*****
      * 
-     * 이게 꼭 필요한 스크립트인가?
      * Animation Event Flag에서 함수를 호출하기위해 Creature에 적용되는 스크립트
      * 
      * 스스로를 폭발시키고 Destroy된다
      * 
      * */
 
-    //UIStatusManager uiStatusManager;
-
     Animator animator;
     ObjectDropper objectDropper;
+
+    AudioSource audioSource;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         objectDropper = GetComponent<ObjectDropper>();
-        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Anim_Bomb()
     {
         animator.SetBool("isBomb", true);
+
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BOOM, audioSource);
     }
 
     void Anim_Bomb_Done()
     {
         PoolingManager.poolingManager.returnCreature(gameObject, 0);
-        //Destroy(gameObject);
     }
 
     // Creature가 터지는 애니메이션이 시작됨과 동시에 킬이 적립된다.

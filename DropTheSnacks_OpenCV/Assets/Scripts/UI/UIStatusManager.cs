@@ -17,7 +17,7 @@ public class UIStatusManager : MonoBehaviour
     // singleton
     public static UIStatusManager uiStatusManager;
 
-    int __stageTimer__ = 5; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
+    int __stageTimer__ = 60; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
     
     // 본 스테이지의 남은 초(sec)
     int leftStageTime;
@@ -31,12 +31,14 @@ public class UIStatusManager : MonoBehaviour
     
     public Image hp_i, gage_i, bossHp_i, bossHp_i_bg;
 
+    public AudioSource loopAudioSource;
+    public AudioSource itemAudioSource;
+
     private void Awake()
     {
         uiStatusManager = this;
 
         objectGenerator = GameObject.Find("GameManager").GetComponentInChildren<ObjectGenerator>();
-
     }
 
     // Start is called before the first frame update
@@ -127,6 +129,11 @@ public class UIStatusManager : MonoBehaviour
         // 스테이지가 초기화(다시시작)되는 경우와
         // 다음 스테이지로 진행되는 경우를 구분한다
         initUIStatus(!isInit);
+
+        // bgm on
+        SoundManager.soundManager.playBgmSound((int)SoundManager.bgm.NORMAL, loopAudioSource);
+
+
     }
 
 

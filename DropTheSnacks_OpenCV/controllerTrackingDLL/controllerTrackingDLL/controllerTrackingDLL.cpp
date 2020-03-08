@@ -50,6 +50,7 @@ extern "C" {
 
 		cap.release();
 
+		waitKey(1);
 		return true;
 	}
 

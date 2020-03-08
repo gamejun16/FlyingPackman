@@ -19,10 +19,12 @@ public class BarrierController : MonoBehaviour
 
     //SpriteRenderer spriteRenderer;
     Animator animator;
+    AudioSource audioSource;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -90,6 +92,7 @@ public class BarrierController : MonoBehaviour
         animator.SetBool("isHitted", true);
 
         // 사운드 출력
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BARRIER, audioSource);
     }
 
     // 이펙트 종료

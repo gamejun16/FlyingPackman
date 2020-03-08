@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Creature\Boss\Henchman\CruiseMissileController.cs" />
     <Compile Include="Assets\Scripts\Creature\Boss\Henchman\HenchmanController.cs" />
     <Compile Include="Assets\Scripts\Creature\CreatureController.cs" />
+    <Compile Include="Assets\Scripts\Creature\DangerController.cs" />
     <Compile Include="Assets\Scripts\Effect\BarrierController.cs" />
     <Compile Include="Assets\Scripts\Field\ObjectDestroyer.cs" />
     <Compile Include="Assets\Scripts\Field\ObjectGenerator.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerAnimController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStatusManager.cs" />
+    <Compile Include="Assets\Scripts\UI\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIStatusManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/jin/Desktop/Univ/4-1/short-project/DropTheSnacks_OpenCV/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

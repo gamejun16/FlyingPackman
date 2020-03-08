@@ -12,7 +12,6 @@ public class PlayerAnimController : MonoBehaviour
      * 
      * */
 
-
     public PlayerController playerController;
     public PlayerStatusManager playerStatusManager;
     public GearPositionController gearPositionController;
@@ -20,14 +19,18 @@ public class PlayerAnimController : MonoBehaviour
 
     public Animator animator;
 
+    AudioSource audioSource;
+
     private void Awake()
     {
-        //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Anim_Hitted()
     {
         animator.SetBool("isHitted", true);
+
+        SoundManager.soundManager.playPlayerSound((int)SoundManager.player.DAMAGED, audioSource);
     }
     void Anim_Hitted_Done()
     {

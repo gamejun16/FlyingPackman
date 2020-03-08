@@ -6,9 +6,13 @@ public class CruiseMissileController : MonoBehaviour
 {
     /*****
      * 
+     * SpecialBullet
+     * 
      * 유도 미사일을 구현하는 스크립트
      * 
      * */
+    AudioSource audioSource;
+    static int specialBulletSerialNumb = 0;
 
     GameObject target;
 
@@ -17,6 +21,7 @@ public class CruiseMissileController : MonoBehaviour
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         objectDropper = GetComponent<ObjectDropper>();
         //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
@@ -26,11 +31,13 @@ public class CruiseMissileController : MonoBehaviour
     void Anim_Bomb()
     {
         animator.SetBool("isBomb", true);
+
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BOOM2, audioSource);
     }
 
     void Anim_Bomb_Done()
     {
-        PoolingManager.poolingManager.returnCreature(gameObject, 0);
+        PoolingManager.poolingManager.returnSpecialBullet(gameObject, specialBulletSerialNumb);
         //Destroy(gameObject);
     }
 
@@ -55,8 +62,7 @@ public class CruiseMissileController : MonoBehaviour
     // 회전 담당(움직임은 ObjectDropper가 관리)
     void move()
     {
-        // -5 ~ 5 to 
-        float angle = (transform.position.x - target.transform.position.x)* 3f;
+        float angle = (transform.position.x - target.transform.position.x) * 3f;
         transform.rotation = Quaternion.Euler(0, 0, -angle);
 
         // 매 Update마다 현 위치와 Ghost 위치의 중앙으로 이동(수렴)
@@ -94,11 +100,11 @@ public class CruiseMissileController : MonoBehaviour
         if (collision.CompareTag("player"))
         {
             UIStatusManager.uiStatusManager.hpManager();
-            PoolingManager.poolingManager.returnCreature(gameObject, 0);
+            PoolingManager.poolingManager.returnSpecialBullet(gameObject, specialBulletSerialNumb);
         }
         else if (collision.CompareTag("DestroyArea"))
         {
-            PoolingManager.poolingManager.returnCreature(gameObject, 0);
+            PoolingManager.poolingManager.returnSpecialBullet(gameObject, specialBulletSerialNumb);
         }
     }
 }

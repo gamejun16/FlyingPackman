@@ -31,7 +31,8 @@ public class BossPatternManager: MonoBehaviour
 
     // 방어막
     BarrierController barrierController;
-    
+
+    AudioSource audioSource;
 
     // 하수인 스폰 포인트
     public List<GameObject> henchmanSpawnPoints;
@@ -39,6 +40,7 @@ public class BossPatternManager: MonoBehaviour
     private void Awake()
     {
         barrierController = GetComponentInChildren<BarrierController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -49,6 +51,7 @@ public class BossPatternManager: MonoBehaviour
         StartCoroutine("setPosition");
         StartCoroutine("bossProcess");
 
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BOSS_INTRO, UIStatusManager.uiStatusManager.loopAudioSource);
     }
 
     // Update is called once per frame
@@ -69,6 +72,11 @@ public class BossPatternManager: MonoBehaviour
 
             yield return null;
         }
+
+        SoundManager.soundManager.playBgmSound((int)SoundManager.bgm.NORMAL, UIStatusManager.uiStatusManager.loopAudioSource);
+        // bgm 속도 빠르게
+        //audioSource.pitch = 1.3f;
+        UIStatusManager.uiStatusManager.loopAudioSource.pitch = 1.3f;
 
     }
 

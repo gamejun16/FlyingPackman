@@ -9,7 +9,14 @@ public class PlayerController : MonoBehaviour
 
     // 자식 오브젝트 레이저
     public GameObject Laser;
-    
+
+    public AudioSource laserAudioSource;
+
+    private void Awake()
+    {
+        laserAudioSource = transform.GetChild(0).GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +46,10 @@ public class PlayerController : MonoBehaviour
     // Laser(GameObject)를 키고 끄는 함수
     public void LaserSetActive(bool On = false)
     {
+        // sound
+        if (On) SoundManager.soundManager.playOtherSound((int)SoundManager.other.LASER, laserAudioSource);
+        else laserAudioSource.Stop();
+
         Laser.SetActive(On);
     }
 

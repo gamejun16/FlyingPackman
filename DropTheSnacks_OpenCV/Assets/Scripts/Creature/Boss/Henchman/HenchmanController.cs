@@ -14,6 +14,7 @@ public class HenchmanController : MonoBehaviour
 
     //UIStatusManager uiStatusManager;
     BossPatternManager bossPatternManager;
+    AudioSource audioSource;
 
     Animator animator;
 
@@ -25,6 +26,7 @@ public class HenchmanController : MonoBehaviour
         //uiStatusManager = GameObject.Find("GameManager").GetComponentInChildren<UIStatusManager>();
         bossPatternManager = GetComponentInParent<BossPatternManager>();
 
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
     }
 
@@ -43,6 +45,8 @@ public class HenchmanController : MonoBehaviour
     void Anim_Bomb()
     {
         animator.SetBool("isBomb", true);
+
+        SoundManager.soundManager.playCreatureSound((int)SoundManager.creature.BOOM, audioSource);
     }
 
     void Anim_Bomb_Done()
@@ -69,7 +73,9 @@ public class HenchmanController : MonoBehaviour
             {
                 timer = 0f;
 
-                Instantiate(missile, transform.position, Quaternion.identity);
+                //Instantiate(missile, transform.position, Quaternion.identity);
+                GameObject obj = PoolingManager.poolingManager.getSpecialBullet(0);
+                obj.transform.position = transform.position;
             }
             yield return null;
         }

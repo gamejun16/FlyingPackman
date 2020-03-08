@@ -25,6 +25,10 @@ public class PoolingManager : MonoBehaviour
     Queue<GameObject>[] creature = new Queue<GameObject>[1];
     public List<GameObject> creature_pref;
 
+    // 특수 무기
+    Queue<GameObject>[] specialBullet = new Queue<GameObject>[1];
+    public List<GameObject> specialBullet_pref;
+
     private void Awake()
     {
         poolingManager = this;
@@ -32,9 +36,10 @@ public class PoolingManager : MonoBehaviour
         initBullet();
         initItem();
         initCreature();
+        initSpecialBullet();
     }
 
-    // 초기 총알 준비
+    // 총알 준비
     void initBullet()
     {
         bullet[0] = new Queue<GameObject>();
@@ -125,9 +130,32 @@ public class PoolingManager : MonoBehaviour
         creature[idx].Enqueue(obj);
     }
 
-    // 미사일 준비
-    void initCruiseMissile()
+    // 특수무기 준비
+    void initSpecialBullet()
     {
+        specialBullet[0] = new Queue<GameObject>();
 
+        for (int i = 0; i < specialBullet.Length; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                GameObject obj = Instantiate(specialBullet_pref[i], this.transform);
+                obj.SetActive(false);
+
+                // 생성한 오브젝트 저장
+                specialBullet[i].Enqueue(obj);
+            }
+        }
+    }
+    public GameObject getSpecialBullet(int idx)
+    {
+        GameObject obj = specialBullet[idx].Dequeue();
+        obj.SetActive(true);
+        return obj;
+    }
+    public void returnSpecialBullet(GameObject obj, int idx)
+    {
+        obj.SetActive(false);
+        specialBullet[idx].Enqueue(obj);
     }
 }
