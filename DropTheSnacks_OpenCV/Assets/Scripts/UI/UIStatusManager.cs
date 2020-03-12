@@ -17,7 +17,7 @@ public class UIStatusManager : MonoBehaviour
     // singleton
     public static UIStatusManager uiStatusManager;
 
-    int __stageTimer__ = 60; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
+    int __stageTimer__ = 100; // 해당 초(sec) 경과 후 보스 스테이지가 시작된다
     
     // 본 스테이지의 남은 초(sec)
     int leftStageTime;

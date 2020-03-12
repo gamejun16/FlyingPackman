@@ -48,7 +48,7 @@ public class PoolingManager : MonoBehaviour
 
         for (int i = 0; i < bullet.Length; i++)
         {
-            for (int j = 0; j < 50; j++)
+            for (int j = 0; j < 80; j++)
             {
                 GameObject obj = Instantiate(bullet_pref[i], this.transform);
                 obj.SetActive(false);
