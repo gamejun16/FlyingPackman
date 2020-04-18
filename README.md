@@ -3,6 +3,7 @@
 2020.03
 
 # 로직
+0. 빨간색 물체를 컨트롤러로 사용
 
 1. OpenCV 색깔 인식을 통해 화면상(웹캠 등의 카메라)에 가장 큰 범위로 인식된 빨간색의 x축 좌표를 인식
 
@@ -13,7 +14,7 @@
 # Ingame
 ![PlayByCoke](https://user-images.githubusercontent.com/24224903/79637892-7c27b300-81bd-11ea-8550-b66422488dfb.gif)
 
-빨간색만 있다면 코카콜라도 컨트롤러로 사용 가능.
+기본 조작
 
 ![PlayByGear](https://user-images.githubusercontent.com/24224903/79637894-7df17680-81bd-11ea-9a8e-e7b656462416.gif)
 
